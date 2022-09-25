@@ -1,11 +1,17 @@
 import express from 'express';
-import alunosRoute from './alunos';
-import cursosRoute from './cursos';
+import usersRoute from './users';
+import coursesRoute from './courses';
+import associateRoute from './associate';
+import publicRoute from './public';
 
 const router = express.Router();
 
-router.use('/alunos', alunosRoute);
-router.use('/cursos', cursosRoute);
-router.get('/', (req, res) => res.send('Hello world! ❤️'));
+router.use('/users', usersRoute);
+
+router.use('/courses', coursesRoute);
+
+router.use('/associate', associateRoute);
+
+router.use('/public', publicRoute);
 
 export default router;

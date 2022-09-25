@@ -1,13 +1,13 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('alunos', {
+    return queryInterface.createTable('users', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      nome: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -15,19 +15,23 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      cep: {
+      zip: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      cidade: {
+      city: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      estado: {
+      state: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      senha: {
+      role: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      password: {
         type: Sequelize.STRING,
         allowNull: false
       }

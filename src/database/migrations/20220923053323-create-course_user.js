@@ -1,26 +1,30 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('curso_aluno', {
+    return queryInterface.createTable('course_user', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      id_aluno: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'alunos', key: 'id' }
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
-      id_curso: {
+      course_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'cursos', key: 'id' }
+        references: { model: 'courses', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       }
     });
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('curso_aluno');
+    await queryInterface.dropTable('course_user');
   }
 };

@@ -1,27 +1,30 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import config from 'config';
 
 // Verifica se o usuário existe, compara as senhas e gera token JWT para autenticação.
 
 class Auth {
-  constructor(Aluno) {
-    this.Aluno = Aluno;
+  constructor(User) {
+    this.User = User;
   }
 
   async authenticate(data) {
-    const aluno = await this.Aluno.findOne({ where: { email: data.email } });
-    if (!aluno) {
-      return new Error('User not found');
+    const user = await this.User.findOne({ where: { email: data.email } });
+
+    const hashPassword = bcrypt.hashSync(data.password, 10);
+
+    if (!user || bcrypt.compareSync(hashPassword, user.password)) {
+      console.log(data.password);
+      return false;
     }
-    if (!(await bcrypt.compare(data.senha, aluno.senha))) {
-      return new Error('password mismatch');
-    }
-    return aluno;
+
+    return user;
   }
 
   static generateToken(payload) {
-    return jwt.sign(payload, process.env.AUTH_KEY, {
-      expiresIn: '7d'
+    return jwt.sign(payload, config.get('auth.key'), {
+      expiresIn: config.get('auth.tokenExpiresIn')
     });
   }
 }

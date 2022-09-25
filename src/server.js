@@ -8,7 +8,9 @@ const port = 3333;
   try {
     const server = http.Server(Server);
     server.listen(port, () =>
-      console.log(`⚡| Server is running on port ${port}!`)
+      console.log(
+        `⚡| Server is running on port ${port}! 🔹 Link: http://localhost:${port}`
+      )
     );
 
     const exitSignals = ['SIGINT', 'SIGTERM', 'SIGQUIT'];
@@ -20,7 +22,7 @@ const port = 3333;
             process.exit(1);
           }
           database.disconnect(() => {
-            console.error('⛔| Database connection closed!');
+            console.error('🔺 - Database connection closed!');
             process.exit(0);
           });
         })
