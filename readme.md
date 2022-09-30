@@ -29,16 +29,16 @@ Essa aplicação possui as funcões CRUD, autenticação e autorização de usu�
 
 - Funcionalidade aumenta a segurança contra possivel vazamento de dados sensíveis.
 
-✅ **Adicionado serviço e middleware de autenticação JWT - Serviço: encarregado de gerar token JWT para futura autenticação de usuario e validar senha encriptada.**
-
+✅ **Adicionado serviço e middleware de autenticação JWT**
+- Serviço: encarregado de gerar token JWT para futura autenticação de usuario e validar senha encriptada.
 - Caso o usuário não seja encontrado ou a senha não seja válida é retornado um erro.
 - Middleaware: encarregado de verificar o token JWT enviado na requisicão de usuário e permitir aceso a aplicação.
 
 ✅ **Adicionado serviço ACL: Access Control List**
 
-- Atributo Admin para o model de usuário o qual cede autorização para adição de curso para demais usuários.
+- Adicionado o atributo Admin para o model de usuário o qual cede autorização para adição de curso para demais usuários.
 
-- A role default é Admin, mas caso seja passado o atributo role:"user" durante a criação o usuário ficará com o acesso limitado a aluns recursos da API
+- A role default é Admin, mas caso seja passado o atributo ``role:"user"`` durante a criação o usuário ficará com o acesso limitado a aluns recursos da API
 
 ✅ **Criado Serviço e Controlador de Associação e recuperação de senha**
 
